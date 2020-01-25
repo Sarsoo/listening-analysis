@@ -25,8 +25,8 @@ else:
     uris = []
 
 # scrobble range
-from_date = datetime.datetime(year=2017, month=1, day=1)
-to_date = datetime.datetime(year=2018, month=1, day=1)
+from_date = datetime.datetime(year=2018, month=1, day=1)
+to_date = datetime.datetime(year=2019, month=1, day=1)
 
 scrobbles = fmnet.get_recent_tracks(from_time=from_date, to_time=to_date, page_limit=200)
 
