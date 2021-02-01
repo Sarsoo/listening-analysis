@@ -5,3 +5,5 @@ __pycache__
 .fm
 scratch.py
 service.json
+cache.json
+.env

@@ -8,13 +8,17 @@ logger = logging.getLogger(__name__)
 class Cache:
     def __init__(self, cache):
         self.cache = cache
+        # dictionary indexed by artist name followed by track name
 
     def set_track(self, name, artist, uri=None, audio_features=None):
         name = str(name).lower()
         artist = str(artist).lower()
 
+        # ARTIST
         if self.cache['cache'].get(artist) is None:
             self.cache['cache'][artist] = {name: {}}
+
+        # TRACK
         if self.cache['cache'][artist].get(name) is None:
             self.cache['cache'][artist][name] = {}
 
@@ -39,7 +43,7 @@ def load_cache_from_storage(path: str = '.', name: str = 'cache.json'):
             return Cache(json.loads(file.read()))
     else:
         logger.error(f'{os.path.join(path, name)} does not exist')
-        return {'cache': {}}
+        return Cache({'cache': {}})
 
 
 def write_cache_to_storage(cache: Cache, path: str = '.', name: str = 'cache.json'):

@@ -1,0 +1,29 @@
+[tool.poetry]
+name = "listening-analysis"
+version = "0.1.0"
+description = "Analysing listening habits using Spotify & Last.fm data"
+authors = ["andy <andy@sarsoo.xyz>"]
+
+[tool.poetry.dependencies]
+python = ">=3.8,<3.10"
+spotframework = {path = "../spotframework"}
+fmframework = {path = "../fmframework"}
+numpy = "^1.20.0"
+pandas = "^1.2.1"
+opencv-python = "^4.5.1"
+ipykernel = "^5.4.3"
+jupyterlab = {version = "^3.0.6", optional = true}
+google-cloud-bigquery = "^2.7.0"
+python-dotenv = "^0.15.0"
+matplotlib = "^3.3.4"
+pyarrow = "^3.0.0"
+
+[tool.poetry.dev-dependencies]
+pylint = "^2.6.0"
+
+[tool.poetry.extras]
+jupyter = ["jupyterlab"]
+
+[build-system]
+requires = ["poetry-core>=1.0.0"]
+build-backend = "poetry.core.masonry.api"
