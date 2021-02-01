@@ -1,5 +1,6 @@
 
 from google.cloud import bigquery
+import pandas as pd
 
 client = bigquery.Client()
 
@@ -21,3 +22,12 @@ def all_joined(limit: int = 200):
         query += f' LIMIT {limit}'
 
     return client.query(query).to_dataframe()
+
+def get_query(pull=False, cache="query.csv"):
+    if pull:
+        scrobbles = all_joined(limit=-1) # load dataset as panda frame
+    else:
+        scrobbles = pd.read_csv(cache, sep='\t', index_col=0)
+    scrobbles['time'] = pd.to_datetime(scrobbles['time'])
+    scrobbles = scrobbles.set_index('time')
+    return scrobbles

@@ -5,11 +5,15 @@ import pandas as pd
 
 from spotframework.model.track import PlaylistTrack
 from spotframework.net.network import Network as SpotNet, NetworkUser
+from fmframework.net.network import Network as FMNet
 
 def get_spotnet():
     return SpotNet(NetworkUser(client_id=os.environ['SPOT_CLIENT'],
                                client_secret=os.environ['SPOT_SECRET'],
                                refresh_token=os.environ['SPOT_REFRESH'])).refresh_access_token()
+
+def get_fmnet():
+    return FMNet(username='sarsoo', api_key=os.environ['FM_CLIENT'])
 
 def get_playlist(name: str, spotnet: SpotNet):
     playlists = spotnet.playlists()

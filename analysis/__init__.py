@@ -1,8 +1,9 @@
+from datetime import datetime
 import logging
 import pandas as pd
 
 float_headers = ["acousticness", "danceability", "energy", "instrumentalness", "liveness", "speechiness", "valence"]
-descriptor_headers = ["duration_ms", "mode", "loudness", "key", "tempo", "time_signature"] + float_headers
+spotify_descriptor_headers = ["duration_ms", "mode", "loudness", "key", "tempo", "time_signature"] + float_headers
 
 def init_log():
     logger = logging.getLogger('listening')
@@ -25,3 +26,7 @@ def init_log():
     spotframework_logger.addHandler(stream_handler)
     fmframework_logger.addHandler(stream_handler)
     spotfm_logger.addHandler(stream_handler)
+
+def days_since(in_date):
+    now = datetime.now()
+    return now - in_date
