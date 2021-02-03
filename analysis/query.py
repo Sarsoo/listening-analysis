@@ -6,7 +6,7 @@ client = bigquery.Client()
 
 def all_joined(limit: int = 200):
     query = (
-        'SELECT ' 
+        'SELECT DISTINCT' 
         '   Scrobbles.track, Scrobbles.album, Scrobbles.artist, Scrobbles.time, Scrobbles.uri, '
         '   Features.acousticness, Features.danceability, Features.duration_ms, '
         '   Features.energy, Features.instrumentalness, Features.key, Features.liveness, '
@@ -14,7 +14,7 @@ def all_joined(limit: int = 200):
         '   Features.time_signature, Features.valence '
 
         'FROM `sarsooxyz.scrobbles.*` AS Scrobbles '
-        'INNER JOIN `sarsooxyz.audio_features.features` AS Features '
+        'LEFT JOIN `sarsooxyz.audio_features.features` AS Features '
         'ON Scrobbles.uri = Features.uri '
     )
 
@@ -27,7 +27,11 @@ def get_query(pull=False, cache="query.csv"):
     if pull:
         scrobbles = all_joined(limit=-1) # load dataset as panda frame
     else:
-        scrobbles = pd.read_csv(cache, sep='\t', index_col=0)
+        try:
+            scrobbles = pd.read_csv(cache, sep='\t', index_col=0)
+        except FileNotFoundError:
+            print(f'{cache} not found, pulling')
+            scrobbles = all_joined(limit=-1) # load dataset as panda frame
     scrobbles['time'] = pd.to_datetime(scrobbles['time'])
     scrobbles = scrobbles.set_index('time')
     return scrobbles
