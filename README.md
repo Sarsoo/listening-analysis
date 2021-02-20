@@ -14,3 +14,5 @@ Uses two data sources,
 
 The two are joined by searching Last.fm tracks on Spotify to get a Uri, the track name and artist name are provided for the query.
 These Uris can be used to retrieve Spotify feature descriptors.
+
+![SVM Comparison](docs/w-uw-svm.png)
