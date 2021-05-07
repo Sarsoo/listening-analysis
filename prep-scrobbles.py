@@ -20,7 +20,7 @@ fmnet = FMNet(username='sarsoo', api_key=os.environ['FM_CLIENT'])
 cache = load_cache_from_storage()
 
 try:
-    for year in range(2017, 2021):
+    for year in range(2017, 2022):
         from_date = datetime.datetime(year=year, month=1, day=1)
         to_date = datetime.datetime(year=year + 1, month=1, day=1)
 
