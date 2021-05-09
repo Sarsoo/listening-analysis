@@ -2,7 +2,7 @@
 
 Notebooks:
 * [analysis](analysis.ipynb) for a intro to the dataset and premise
-* [artist](artist.ipynb), [album](./album.ipynb) & [playlist](playlist.ipynb) investigations
+* [artist](artist.ipynb), [album](./album.ipynb), [track](./track.ipynb) & [playlist](playlist.ipynb) investigations
 * [stats](stats.ipynb) for high-level stats about the dataset (Spotify feature miss ratio)
 * [playlist SVM](./playlist-svm.ipynb) using Scikit to classify tracks using the contents of playlists as models
 * [playlist NN](./playlist-nn.ipynb) using a multi-layer perceptron to classify tracks using the contents of playlists as models
