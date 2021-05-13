@@ -59,7 +59,7 @@ def populated_features(spotnet: SpotNetwork,
         except (KeyError, TypeError):
             for_pulling.append(row)
     
-    # GET SPOTIFY TRACKS
+    # GET SPOTIFY TRACKS FOR CACHE FAILURES
     logger.info('pulling tracks')
     tracks = spotnet.tracks(uris=[i.uri for i in for_pulling])
 
